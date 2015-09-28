@@ -63,12 +63,12 @@ npm install -g jspm
 ```
 #### Check out the BerryCam Aurelia project onto your Pi
 ```
-git clone https://github.com/stevies/berrycam-aurelia-v2.git
+git clone https://github.com/stevies/berrycam-aurelia.git
 ```
 #### Build and bundle the app
 Go to the project directory:
 ```
-cd berrycam-aurelia-v2
+cd berrycam-aurelia
 ```
 Then run
 ```
@@ -126,7 +126,7 @@ One thing that is a bit different from the usual Aurelia Skeleton Navigation is 
 requirement in another project that the basic directory needed to be one level deeper than the flat
 structure in the skeleton - eg - all source code under '/app':
 ```
-berrycam-aurelia-v2
+berrycam-aurelia
 - app
 -- fonts
 -- images
