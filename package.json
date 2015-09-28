@@ -1,0 +1,105 @@
+{
+  "name": "berrycam-aurelia",
+  "version": "0.0.1",
+  "description": "Berrycam using aurelia",
+  "keywords": [
+    "aurelia",
+    "berrycam"
+  ],
+  "scripts": {
+    "lint": "eslint ./app/src"
+  },
+  "homepage": "",
+  "bugs": {
+    "url": ""
+  },
+  "license": "MIT",
+  "author": "",
+  "main": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stevies/berrycam-aurelia-v2"
+  },
+  "dependencies": {
+    "envs": "^0.1.6",
+    "express.io": "^1.1.13",
+    "fs-extra": "^0.18.4",
+    "lodash": "^3.9.3",
+    "mkdirp": "^0.5.1",
+    "moment": "^2.10.3",
+    "raspicam": "git+https://github.com/stevies/node-raspicam.git#master",
+    "serve-index": "^1.6.4",
+    "serve-static": "^1.9.3"
+  },
+  "devDependencies": {
+    "aurelia-bundler": "^0.1.6",
+    "aurelia-tools": "^0.1.10",
+    "babel-eslint": "^4.1.0",
+    "browser-sync": "^2.8.2",
+    "connect-modrewrite": "^0.8.2",
+    "conventional-changelog": "^0.2.1",
+    "del": "^1.2.0",
+    "eslint": "^1.2.1",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.0",
+    "gulp-changed": "^1.2.1",
+    "gulp-eslint": "^1.0.0",
+    "gulp-less": "^3.0.3",
+    "gulp-notify": "^2.2.0",
+    "gulp-open": "^1.0.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-sourcemaps": "^1.5.2",
+    "jspm": "^0.16.0",
+    "object.assign": "^3.0.1",
+    "require-dir": "^0.3.0",
+    "run-sequence": "^1.1.2",
+    "vinyl-paths": "^1.0.0",
+    "yargs": "^3.16.1"
+  },
+  "jspm": {
+    "directories": {
+      "baseURL": "app"
+    },
+    "dependencies": {
+      "aurelia-binding": "github:aurelia/binding@^0.9.1",
+      "aurelia-bootstrapper": "github:aurelia/bootstrapper@^0.17.0",
+      "aurelia-dependency-injection": "github:aurelia/dependency-injection@^0.10.1",
+      "aurelia-event-aggregator": "github:aurelia/event-aggregator@^0.8.0",
+      "aurelia-framework": "github:aurelia/framework@^0.16.0",
+      "aurelia-history": "github:aurelia/history@^0.7.0",
+      "aurelia-history-browser": "github:aurelia/history-browser@^0.8.0",
+      "aurelia-http-client": "github:aurelia/http-client@^0.11.0",
+      "aurelia-loader": "github:aurelia/loader@^0.9.0",
+      "aurelia-loader-default": "github:aurelia/loader-default@^0.10.0",
+      "aurelia-logging": "github:aurelia/logging@^0.7.0",
+      "aurelia-metadata": "github:aurelia/metadata@^0.8.0",
+      "aurelia-path": "github:aurelia/path@^0.9.0",
+      "aurelia-route-recognizer": "github:aurelia/route-recognizer@^0.7.0",
+      "aurelia-router": "github:aurelia/router@^0.12.0",
+      "aurelia-task-queue": "github:aurelia/task-queue@^0.7.0",
+      "aurelia-templating": "github:aurelia/templating@^0.15.3",
+      "aurelia-templating-binding": "github:aurelia/templating-binding@^0.15.0",
+      "aurelia-templating-resources": "github:aurelia/templating-resources@^0.15.2",
+      "aurelia-templating-router": "github:aurelia/templating-router@^0.16.1",
+      "bootstrap": "github:twbs/bootstrap@^3.3.5",
+      "bootstrap-slider": "github:seiyria/bootstrap-slider@^4.8.1",
+      "clean-css": "npm:clean-css@^3.4.4",
+      "core-js": "npm:core-js@^1.1.4",
+      "css": "github:systemjs/plugin-css@^0.1.18",
+      "jquery": "github:components/jquery@^2.1.4",
+      "lodash": "npm:lodash@^3.10.1",
+      "moment": "github:moment/moment@^2.10.6",
+      "text": "github:systemjs/plugin-text@^0.0.2"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.1.13",
+      "babel-runtime": "npm:babel-runtime@^5.1.13",
+      "core-js": "npm:core-js@^1.1.4"
+    },
+    "overrides": {
+      "github:aurelia/loader@0.9.0": {
+        "core-js": "npm:core-js@0.9.18"
+      }
+    }
+  }
+}

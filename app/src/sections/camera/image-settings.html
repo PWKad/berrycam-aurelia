@@ -1,0 +1,45 @@
+<template>
+
+  <div>
+    ${sizes.label}
+    <div class="btn-group sizeSettings">
+      <button repeat.for="item of sizes.values"
+              class="btn btn-default ${item === $parent.sizes.selectedValue ? 'selected' : ''} ${$last ? 'btn-last' : ''}"
+              click.trigger="$parent.sizes.setSelectedValue(item)">${item}
+      </button>
+    </div>
+  </div>
+
+  <br>
+
+  <div>
+    ${isos.label}
+    <div class="btn-group isoSettings">
+      <button repeat.for="item of isos.values"
+              class="btn btn-default ${item === $parent.isos.selectedValue ? 'selected' : ''} ${$last ? 'btn-last' : ''}"
+              click.trigger="$parent.isos.setSelectedValue(item)">${item}
+      </button>
+    </div>
+  </div>
+
+  <br>
+
+  <div>
+    ${compression.label}
+    <slider value.two-way="compression.selectedValue" label.bind="compression.label"></slider>
+  </div>
+
+  <br>
+
+  <div repeat.for="item of flips">
+    ${item.label}
+    <div class="btn-group hflip">
+      <button repeat.for="flip of item.values"
+              class="btn btn-default ${flip == $parent.item.selectedValue ? 'selected' : ''} ${$last ? 'btn-last' : ''}"
+              click.trigger="$parent.item.setSelectedValue(flip)">${flip}
+      </button>
+    </div>
+    <br><br>
+  </div>
+
+</template>

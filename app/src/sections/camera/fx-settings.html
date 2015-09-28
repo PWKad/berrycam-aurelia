@@ -1,0 +1,8 @@
+<template class="list-group">
+
+  <a repeat.for="fx of fxs.values" href="#"
+     class="list-group-item ${fx === $parent.fxs.selectedValue ? 'selected' : ''}"
+     click.trigger="$parent.fxs.setSelectedValue(fx)">${fx}
+  </a>
+
+</template>

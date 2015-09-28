@@ -1,0 +1,11 @@
+<template>
+
+  <div repeat.for="item of items">
+    <a href="#" click.delegate="item.increment()">
+      <div class="small-button upper ${$first ? 'first' : $last ? 'last' : 'inner'}">
+        <span class="${item.iconClass}"></span>
+      </div>
+    </a>
+  </div>
+
+</template>

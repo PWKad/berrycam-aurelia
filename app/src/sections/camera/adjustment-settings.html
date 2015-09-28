@@ -1,0 +1,8 @@
+<template>
+
+  <div repeat.for="setting of settings">
+    <div>${setting.label}</div>
+    <slider min.bind="setting.minValue" value.two-way="setting.selectedValue" label.bind="setting.label"></slider>
+  </div>
+
+</template>

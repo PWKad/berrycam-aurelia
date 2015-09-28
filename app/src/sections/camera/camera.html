@@ -1,0 +1,95 @@
+<template>
+
+  <div class="buttons-top-row">
+    <camera-controls items.bind="cameraSettings" title.bind="'Camera Settings'"></camera-controls>
+  </div>
+
+  <div class="settings-panel-settings">
+
+    <div class="button-left-panel">
+      <a href="#" click.trigger="toggleImageSettings()">
+        <div class="small-button">
+          <span class="icon-icon-quality"></span>
+        </div>
+      </a>
+    </div>
+
+    <div class="panel">
+
+      <div class="panel-header" repeat.for="item of cameraSettings">${item.label}</div>
+      <div class="panel-values-upper" repeat.for="item of cameraSettings">${item.selectedValue}&nbsp;</div>
+
+      <div class="panel-header lower" repeat.for="item of imageAdjustments">${item.label}&nbsp;</div>
+      <div class="panel-values-lower" repeat.for="item of imageAdjustments">${item.selectedValue}&nbsp;</div>
+
+      <div class="panel-header lower" repeat.for="item of imageSettings">${item.label}&nbsp;</div>
+      <div class="panel-values-bottom" repeat.for="item of imageSettings">${item.selectedValue}&nbsp;</div>
+
+    </div>
+
+    <div class="button-right-panel">
+      <a href="#" click.trigger="toggleAdjustmentSettings()">
+        <div class="small-button">
+          <span class="icon-icon-img-settings"></span>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+  <div class="clearer"></div>
+
+  <div class="image-preview">
+    <img id="preview-image" src.bind="currentImageFullPath">
+  </div>
+
+  <div class="image-filename-text">${formattedFileName}</div>
+
+  <div class="buttons-bottom-row">
+
+    <a href="#" disabled.bind="isBusy" click.trigger="toggleGeneralSettings()">
+      <div class="small-button lower">
+        <span class="glyphicon glyphicon-cog"></span>
+      </div>
+    </a>
+
+    <a href="#" click.trigger="doShutterPress()" disabled.bind="isBusy">
+      <div class="large-button">
+        <i class="spinner-large glyphicon glyphicon-camera" show.bind="!isBusy"></i>
+        <activity-indicator></activity-indicator>
+      </div>
+    </a>
+
+    <a href="#" disabled.bind="isBusy" click.trigger="toggleFxSettings()">
+      <div class="small-button lower">
+        <span class="icon-icon-fx"></span>
+      </div>
+    </a>
+
+  </div>
+
+  <modal showing.bind="showingImageSettings">
+    <modal-header title.bind="'Image Settings'"></modal-header>
+    <modal-body content.bind="'src/sections/camera/image-settings'"></modal-body>
+    <modal-footer></modal-footer>
+  </modal>
+
+  <modal showing.bind="showingFxSettings">
+    <modal-header title.bind="'Image Effects'"></modal-header>
+    <modal-body content.bind="'src/sections/camera/fx-settings'"></modal-body>
+    <modal-footer></modal-footer>
+  </modal>
+
+  <modal showing.bind="showingAdjustmentSettings">
+    <modal-header title.bind="'Adjustment Settings'"></modal-header>
+    <modal-body content.bind="'src/sections/camera/adjustment-settings'"></modal-body>
+    <modal-footer></modal-footer>
+  </modal>
+
+  <modal showing.bind="showingGeneralSettings">
+    <modal-header title.bind="'Genearl Settings'"></modal-header>
+    <modal-body content.bind="'src/sections/camera/general-settings'"></modal-body>
+    <modal-footer></modal-footer>
+  </modal>
+
+</template>
