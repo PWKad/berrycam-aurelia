@@ -1,30 +1,41 @@
-# Converting BerryCam to Aurelia
-The native [iPhone BerryCam app](http://www.fotosyn.com/berrycam/) - written by
-[Jim Moore](https://www.linkedin.com/in/jimoore) - allows the user to remotely take pictures using a Raspberry Pi
-camera.
+This week we're featuring an article by an Aurelia community member, github user [stevies](https://github.com/stevies).  
 
-Early in 2014 I converted BerryCam to JavaScript. I used [Knockout.js](http://knockoutjs.com) for the
+TODO: add a brief introduction to yourself appended to previous line
+
+# Using Aurelia on the Raspberry PI to run BerryCam
+
+Early in 2014 I converted the native [iPhone BerryCam app](http://www.fotosyn.com/berrycam/) - written by
+[Jim Moore](https://www.linkedin.com/in/jimoore) to JavaScript. I used [Knockout.js](http://knockoutjs.com) for the
 front end, and [Express](http://expressjs.com/) for the backend. This was launched as
 [BerryCam Express](http://pitography.github.io/BerryCamExpress). You can read Jim's original
 [blog post about this](http://www.fotosyn.com/blog/berrycam-express-is-now-available).
 
-Since then, I've rewritten BerryCam Express a few times using different JavaScript frameworks - for example, there is a
+This time I decided to recreate BerryCam using Aurelia to allow the user to remotely take pictures using a Raspberry Pi
+camera.
+
+## Background
+
+I've rewritten BerryCam Express a few times using different JavaScript frameworks - for example, there is a
 [port to Angular](https://github.com/stevies/BerrycamExpressAngular).  I've not built or run that one for a while, so
 it may not be in a working state.
+
+TODO: Append on to the end of the last paragraph a sentence about your motivation to rewrite it that will relate to the reader
 
 Back in May 2015, shortly after I discovered Aurelia, I did a very quick BerryCam Express conversion.  The development
 and learning process went very smoothly and quickly - I was immediately struck by how Aurelia allowed me to create a
 clean and simple application and code structure. And it was a good way for me to force myself to try to learn some
 ES6 and ES7. Although I the got the app mostly working, I never really finished it, and neglected to keep it
-up-to-date with later Aurelia releases (it was based on aurelia-framework v0.13.2).
+up-to-date with later Aurelia releases (Aurelia has had many alpha releases since then).
 
 Skip forward a few months - time for another rewrite.
 
 ## Running BerryCam for Aurelia on the Raspberry Pi
 
+Let's get our hands dirty and 
+
 ### Preparing your Raspberry Pi for Node.js
 First of all make sure that you have the latest version of raspbian running on your Raspberry Pi:
-```
+```language-powershell
 sudo apt-get update
 sudo apt-get upgrade
 ```
@@ -136,15 +147,19 @@ If everything works, you should get to see your photograph after a second or so.
 ## The application code
 
 ### Client code - Aurelia
-There really is nothing special about the code for this application. It does not use any weird or complex features of
-Aurelia.  It is about as basic as it gets - really only one view/viewmodel that represents the Camera - and holds all
-the individual camera settings and image properties that need to be sent to the server program via the Aurelia
-HttpClient.
+
+There really is nothing special needed in the Aurelia code for this application as it's all very straight-forward and to the point. It does not take any weird or complex features of Aurelia to accomplish a rather simple goal.  It is about as basic as it gets - really only one view/viewmodel that represents the Camera - and holds all the individual camera settings and image properties that need to be sent to the server program via the Aurelia HttpClient.
 
 There are some examples of custom elements - ActivityIndicator, CameraControls, Modal and a wrapper for a jQuery slider
 control [bootstrap-slider](https://github.com/seiyria/bootstrap-slider)
 
+# TODO: Where are the examples of custom elements?  Have a link?
+
+# TODO: Stevies does the next section on project structure provide value to the reader?  If we remove it just allows one less step when going through the walk-thru
+
+
 #### Project structure
+
 One thing that is a bit different from the usual Aurelia Skeleton Navigation is the project structure. I had a
 requirement in another project that the basic directory needed to be one level deeper than the flat
 structure in the skeleton - eg - all source code under '/app':
@@ -172,17 +187,14 @@ config.js
 index.hmtl
 package.json
 ```
-I have carried that over into this example simply because I had that structure already set up.  It causes some
-challenges - the build process has an extra step to copy everything into a tmp directory so as not to modify the
-original config.js. And it means copying jspm_packages (or bits of it) around.
+I have carried that over into this example simply because I had that structure already set up.  It causes some challenges - the build process has an extra step to copy everything into a tmp directory so as not to modify the original config.js. And it means copying jspm_packages (or bits of it) around.
 
 #### Running locally
 It is possible to run the application locally in development mode. Clone the project as normal. Then run
 ```
 gulp watch
 ```
-With no server backend running, you'll get errors when trying to take a photograph, but the client will do work OK
-loaded on http://localhost:9000
+With no server backend running, you'll get errors when trying to take a photograph, but the client will be loaded on http://localhost:9000
 
 If you run the backend server off the Pi with environment variable:
 ```
@@ -192,9 +204,10 @@ It will bypass the camera and return a hard-coded fake picture to the web client
 ![Screenshot](Camera5.png)
 
 #### Aurelia Bundling
-I really did not want to serve-up an unbundled app from the Pi. Therefore, I have spent some time getting Aurelia
-bundler to work.  My project structure means a bit of extra copying files around - and I might still have some
-work to do to tidy-up the gulp scripts - I've got some copy/paste duplication in there that should be fixed.
+
+TODO: Stevies do you need a hand with bundling here?  Someone can give a hand if you want to add this as part of the build process so only the built files get deployed to the PI.  That would greatly reduce the time to develop also.
+
+I really did not want to serve-up an unbundled app from the Pi. Therefore, I have spent some time getting Aurelia bundler to work.  My project structure means a bit of extra copying files around - and I might still have some work to do to tidy-up the gulp scripts - I've got some copy/paste duplication in there that should be fixed.
 
 ### Server code - Express
 
@@ -208,4 +221,4 @@ Request URL:http://localhost:3000/berrycam?ISO=100&awb=Auto&br=60
 I used the [node-raspicam](https://github.com/troyth/node-raspicam) library to simplify talking to the camera hardware.
 
 
-
+TODO: Add a link to a repository with code
