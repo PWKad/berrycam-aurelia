@@ -54,6 +54,14 @@ sudo npm cache clean -f
 sudo npm install -g n
 sudo n stable
 ```
+There may be an eaier one-stop way to get the latest version of note installed. Perhaps
+```
+wget https://nodejs.org/dist/v4.1.1/node-v4.1.1-linux-armv7l.tar.gz
+cd /usr/local
+sudo tar -xvzf ~/node-v4.1.1-linux-armv7l.tar.gz --strip=1
+```
+might get the latest. I've not tried that.
+
 #### Install gulp and jspm
 We'll actually be checking out the BerryCam project from GitHub and building it directly on the Pi, so we need to do
 some of the usual Aurelia setup.
@@ -74,11 +82,13 @@ Then run
 ```
 npm install
 ```
-That could take over an hour on a Pi 2 (on the original Pi 1 it will be many hours).  You might also
-see some errors. You can try running 'npm install' again (it will get quicker to do this as files get cached) or just
-igonore them and hope they are not fatal.
+That could take over 40 minutes on a Pi 2 (on the original Pi 1 it will be many hours).  This is normal: the Pi is slow
+doing file IO and we are processing a lot of files.
 
-Then you can run:
+You might also see some errors (I saw a few complaints about 'node-gyp'). You can try running 'npm install' again
+(it will get quicker to do this as files get cached) or just igonore them and hope they are not fatal.
+
+When the npm packages are full installed, you can then run:
 ```
 jspm install
 ```
@@ -86,8 +96,7 @@ And then:
 ```
 gulp bundle
 ```
-These tasks will also take a bit of time to complete - that is normal. The Pi is slow doing file IO and we are
-processing a lot of files.
+These tasks will also take a bit of time to complete.
 
 #### Run the server app
 Once all the above steps complete, you should have a built app ready to run. You should have a 'deploy' directory
@@ -107,7 +116,21 @@ Open a browser on at your Pi's hostname or IP address at port 3000 - eg:
 http://pi:3000
 ```
 You should see the client app load. It will look like this.
-![Screenshot](Capture.PNG)
+![Screenshot](Camera0.png)
+
+You can modify the image settings such as size, compression, ISO, or flip vertically or horizontally.
+![Screenshot](Camera1.png)
+
+Or adjust brightness, sharpness, contrast or saturation,
+![Screenshot](Camera2.png)
+
+You can apply one of many image effects
+![Screenshot](Camera3.png)
+
+When you have set-up the camera, then click the big button at the bottom to send your request to the Camera on the Pi.
+
+If everything works, you should get to see your photograph after a second or so. Expample of "oilpaint" effect:
+![Screenshot](Camera4.png)
 
 
 ## The application code
@@ -153,6 +176,21 @@ I have carried that over into this example simply because I had that structure a
 challenges - the build process has an extra step to copy everything into a tmp directory so as not to modify the
 original config.js. And it means copying jspm_packages (or bits of it) around.
 
+#### Running locally
+It is possible to run the application locally in development mode. Clone the project as normal. Then run
+```
+gulp watch
+```
+With no server backend running, you'll get errors when trying to take a photograph, but the client will do work OK
+loaded on http://localhost:9000
+
+If you run the backend server off the Pi with environment variable:
+```
+NODE_ENV=dev
+```
+It will bypass the camera and return a hard-coded fake picture to the web client.
+![Screenshot](Camera5.png)
+
 #### Aurelia Bundling
 I really did not want to serve-up an unbundled app from the Pi. Therefore, I have spent some time getting Aurelia
 bundler to work.  My project structure means a bit of extra copying files around - and I might still have some
@@ -169,9 +207,5 @@ Request URL:http://localhost:3000/berrycam?ISO=100&awb=Auto&br=60
 ```
 I used the [node-raspicam](https://github.com/troyth/node-raspicam) library to simplify talking to the camera hardware.
 
-The server can be run without a camera attached (useful for local development). Run with environment variable:
-```
-NODE_ENV=dev
-```
-In dev mode, it will bypass the camera and return a hard-coded fake picture to the web client.
+
 
