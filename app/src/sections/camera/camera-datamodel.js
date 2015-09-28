@@ -22,15 +22,15 @@ export class CameraDatamodel {
     'Spotlight', 'Sports', 'Snow',
     'Beach', 'Verylong', 'Fixedfps', 'Antishake', 'Fireworks'], 'Auto');
 
-  sharpness = new CameraSetting('Sharpness', [], 11, -100);
+  sharpness = new CameraSetting('Sharpness', [], 15, -100);
 
   brightness = new CameraSetting('Brightness', [], 60);
 
-  contrast = new CameraSetting('Contrast', [], 2, -100);
+  contrast = new CameraSetting('Contrast', [], 40, -100);
 
-  saturation = new CameraSetting('Saturation', [], 4, -100);
+  saturation = new CameraSetting('Saturation', [], 15, -100);
 
-  size = new CameraSetting('Size', ['Thumbnail', 'Tiny', 'Small', 'Medium', 'Large']);
+  size = new CameraSetting('Size', ['Thumbnail', 'Tiny', 'Small', 'Medium', 'Large'], 'Small');
 
   iso = new CameraSetting('ISO', ['100', '200', '400']);
 
